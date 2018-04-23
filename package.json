@@ -1,0 +1,28 @@
+{
+  "name": "machine-learning-tfjs",
+  "version": "1.0.0",
+  "description": "Stanford University machine learning course with tfjs",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fraserxu/machine-learning-tfjs.git"
+  },
+  "keywords": [
+    "machine",
+    "learning",
+    "tfjs"
+  ],
+  "author": "Fraser Xu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fraserxu/machine-learning-tfjs/issues"
+  },
+  "homepage": "https://github.com/fraserxu/machine-learning-tfjs#readme",
+  "dependencies": {
+    "@tensorflow/tfjs": "^0.9.1",
+    "typescript": "^2.8.3"
+  }
+}
