@@ -10,13 +10,37 @@ const hiddenLayer = tf.layers.dense({
 model.add(hiddenLayer)
 
 const outputLayer = tf.layers.dense({
-  units: 3,
+  units: 1,
   activation: 'sigmoid'
 })
 model.add(outputLayer)
 
-const sgdOpt = tf.train.sgd(0.1)
+const sgdOpt = tf.train.sgd(0.5)
 model.compile({
   optimizer: sgdOpt,
   loss: tf.losses.meanSquaredError
 })
+
+const xs = tf.tensor2d([[0, 0], [0.5, 0.5], [1, 1]])
+
+const ys = tf.tensor2d([[0], [0.5], [1]])
+
+const train = async () => {
+  for (let i = 0; i < 500; i++) {
+    const response = await model.fit(xs, ys, {
+      epochs: 1,
+      shuffle: true
+    })
+    console.log(response.history.loss[0])
+  }
+}
+
+const inputs = tf.tensor2d([[1, 1]])
+
+const main = async () => {
+  await train()
+  const predictions = await model.predict(inputs)
+  predictions.print()
+}
+
+main()
