@@ -1,7 +1,15 @@
-# machine-learning-tfjs
+# hotdog
 
-Stanford University machine learning course with tfjs
+A small fun project using tensorflowjs and mobilenet model to recognise image taken from camera within browser.
+
+### Local dev
 
 ```
-parcel src/index.html
+npm start
+```
+
+### Deploy
+
+```
+npm run build
 ```
