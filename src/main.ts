@@ -9,10 +9,12 @@ const captureButton: HTMLButtonElement = document.querySelector('#capture')
 const videoElement: HTMLVideoElement = document.querySelector('video')
 const canvasElement: HTMLCanvasElement = document.querySelector('#canvas')
 
-const width =
+const windowWidth =
   window.innerWidth ||
   document.documentElement.clientWidth ||
   document.body.clientWidth
+
+const width = windowWidth > 640 ? 640 : windowWidth
 
 let model: mobilenet.MobileNet | undefined
 let mediaStream: MediaStream | undefined
