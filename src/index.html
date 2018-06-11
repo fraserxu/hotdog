@@ -1,23 +1,28 @@
 <!-- index.html -->
 <html>
 
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>not hotdog</title>
+</head>
+
 <body>
+  <section id="loading">Loading...</section>
   <main class="main">
     <input id="input" type="file" />
+    <!-- <button class="button">🗂 Select a photo</button> -->
     </br>
+    <button id="camera" class="button">📷 Use camera</button>
     <img id="img" />
     </br>
+    <video></video>
+    <canvas id="canvas"></canvas>
+    <button id="capture" class="button ">📸 Capture</button>
+    <br/>
     <span id="text"></span>
   </main>
-  <style>
-    .main {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-  </style>
-  <script src="./main.ts"></script>
+  <link href="./style.css " media="all " rel="stylesheet " type="text/css " />
+  <script src="./main.ts "></script>
 </body>
 
 </html>
