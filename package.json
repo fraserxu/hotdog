@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/fraserxu/machine-learning-tfjs#readme",
   "dependencies": {
+    "@tensorflow-models/mobilenet": "^0.1.0",
     "@tensorflow/tfjs": "^0.11.6",
     "@tensorflow/tfjs-core": "^0.11.6",
     "typescript": "^2.9.1"

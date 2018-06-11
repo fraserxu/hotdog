@@ -1,43 +1,42 @@
-import * as tf from '@tensorflow/tfjs'
+import * as mobilenet from '@tensorflow-models/mobilenet'
 
-const model = tf.sequential()
+const input: HTMLInputElement = document.querySelector('#input')
+const img: HTMLImageElement = document.querySelector('#img')
+const text: HTMLSpanElement = document.querySelector('#text')
 
-const hiddenLayer = tf.layers.dense({
-  units: 4,
-  inputShape: [2],
-  activation: 'sigmoid'
-})
-model.add(hiddenLayer)
+let model: mobilenet.MobileNet | undefined
 
-const outputLayer = tf.layers.dense({
-  units: 1,
-  activation: 'sigmoid'
-})
-model.add(outputLayer)
+const load = async () => {
+  input.setAttribute('style', 'display: none;')
+  text.innerHTML = 'loading models...'
+  model = await mobilenet.load()
+  text.innerHTML = 'Model loaded. Now you can select an image to predict...'
+  input.setAttribute('style', 'display: block;')
+}
 
-const sgdOpt = tf.train.sgd(0.5)
-model.compile({
-  optimizer: sgdOpt,
-  loss: tf.losses.meanSquaredError
-})
+const formatProbability = (probability: number) =>
+  `${(probability * 100).toFixed(2)}%`
 
-const xs = tf.tensor2d([[0, 0], [0.5, 0.5], [1, 1]])
+const predict = async (img: HTMLImageElement) => {
+  if (model) {
+    const predictions = await model.classify(img)
+    const results = predictions.map(prediction => {
+      return `There are ${formatProbability(
+        prediction.probability
+      )} of chance that you select an image of ${prediction.className}.`
+    })
 
-const ys = tf.tensor2d([[0], [0.5], [1]])
-
-const train = async (iteration: number) => {
-  for (let i = 0; i < iteration; i++) {
-    const response = await model.fit(xs, ys, { epochs: 1, shuffle: true })
-    console.log(response.history.loss[0])
+    text.innerHTML = results.join('<br />')
   }
 }
 
-const inputs = tf.tensor2d([[1, 1]])
-
-const main = async () => {
-  await train(500)
-  const predictions = await model.predict(inputs)
-  predictions.print()
+const onSelectFiles = (event: Event) => {
+  const files: FileList = input.files
+  img.setAttribute('src', window.URL.createObjectURL(files[0]))
+  img.onload = () => predict(img)
 }
 
-main()
+input.addEventListener('change', onSelectFiles, false)
+
+// load model
+load()
