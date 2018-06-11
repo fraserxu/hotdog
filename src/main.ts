@@ -25,12 +25,9 @@ const xs = tf.tensor2d([[0, 0], [0.5, 0.5], [1, 1]])
 
 const ys = tf.tensor2d([[0], [0.5], [1]])
 
-const train = async () => {
-  for (let i = 0; i < 500; i++) {
-    const response = await model.fit(xs, ys, {
-      epochs: 1,
-      shuffle: true
-    })
+const train = async (iteration: number) => {
+  for (let i = 0; i < iteration; i++) {
+    const response = await model.fit(xs, ys, { epochs: 1, shuffle: true })
     console.log(response.history.loss[0])
   }
 }
@@ -38,7 +35,7 @@ const train = async () => {
 const inputs = tf.tensor2d([[1, 1]])
 
 const main = async () => {
-  await train()
+  await train(500)
   const predictions = await model.predict(inputs)
   predictions.print()
 }

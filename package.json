@@ -4,7 +4,7 @@
   "description": "Stanford University machine learning course with tfjs",
   "main": "index.js",
   "scripts": {
-    "build": "tsc"
+    "start": "parcel src/index.html"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,10 @@
   "homepage": "https://github.com/fraserxu/machine-learning-tfjs#readme",
   "dependencies": {
     "@tensorflow/tfjs": "^0.11.6",
-    "@tensorflow/tfjs-node": "^0.1.7",
+    "@tensorflow/tfjs-core": "^0.11.6",
     "typescript": "^2.9.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.8.1"
   }
 }
