@@ -57,7 +57,7 @@ const onCamera = async () => {
   const constraints = {
     audio: false,
     video: { width },
-    facingMode: 'user'
+    facingMode: { exact: 'environment' }
   }
   mediaStream = await navigator.mediaDevices.getUserMedia(constraints)
   hideElement(cameraButton)
