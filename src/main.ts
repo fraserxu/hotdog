@@ -40,7 +40,8 @@ const predict = async (img: HTMLImageElement) => {
     const predictions = await model.classify(img)
     const bestPrediction = predictions[0]
     const classNames = bestPrediction.className.split(',')
-    text.innerHTML = `It's probably a ${classNames[0]} or ${classNames[1]}.`
+    const secondGuess = classNames[1] ? `or ${classNames[1]}` : ''
+    text.innerHTML = `It's a ${classNames[0]} ${secondGuess}!!`
   }
 }
 
