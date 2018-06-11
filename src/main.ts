@@ -47,6 +47,7 @@ const predict = async (img: HTMLImageElement) => {
   }
 }
 
+// TODO: make select existing photo work
 const onSelectFiles = (event: Event) => {
   const files: FileList = input.files
   img.setAttribute('src', window.URL.createObjectURL(files[0]))
